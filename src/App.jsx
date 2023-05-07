@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import TodoList from './TodoList'
 //import { BeakerIcon } from '@heroicons/react/24/solid'
 
 
@@ -15,7 +16,7 @@ function App() {
     setCurrentInput(e.target.value)
   }
 
-  const checkHander = (index) => {
+  const checkHandler = (index) => {
     
     //const checkStatus = e.target.checked
      /*
@@ -85,15 +86,7 @@ function App() {
       <div className='todo-list-wrapper'>
           <div className='todo-list'>
               <label>{/*To-Do List:*/}</label>
-              <ul>
-                {inputs.map((input, index) => {
-
-                    return ( <li key={index} onClick={e => checkHander(index)} className={checkedItems[index] ? 'strike-tr greyed-out' : ''}>
-                                            <input className='checkbox' type='checkbox' />{input}
-                            
-                            </li>)
-                })}
-              </ul>
+              <TodoList checkedItems={checkedItems} inputs={inputs} />
           </div>
       </div>
     </div>
