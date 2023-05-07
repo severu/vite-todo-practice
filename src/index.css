@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2px solid #333652;
+  border-radius: 10px;
+  /*background-color: #F9F9F9;*/
+  background-color: #E9EAEC;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.todo-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.todo-list-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: auto;
+}
+
+.todo-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  /*background-color: #007bff;*/
+  background-color: #FAD02C;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-top: 1rem;
+  /*color: blueviolet;*/
+  color: #FAD02C;
+}
+
+li:nth-child(even) {
+  /*background-color: lightblue;*/
+  /*background-color: #333652;*/
+  background-color: #90ADC6;
+}
+
+li:nth-child(odd) {
+  /*background-color: lightgreen;*/
+  /*background-color: #90ADC6;*/
+
+  background-color: #333652;
+}
+
+li {
+  color: #F9F9F9;
+  min-width: 250px;
+}
+
+li:hover {
+  background-color: #0056b3 !important;
+  cursor: pointer;
+}
+
+.strike-tr {
+  text-decoration: line-through;
+  text-decoration-color: black;
+  text-decoration-thickness: 2px;
+  font-size: 12px !important;
+}
+
+.checkbox {
+  opacity: 0;
+  
+}
+
+.greyed-out {
+  background-color: darkgray !important;
+}
