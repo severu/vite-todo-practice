@@ -1,0 +1,1 @@
+[ ] Color palette/theme used: https://www.canva.com/colors/color-palettes/foil-covered-sneakers/

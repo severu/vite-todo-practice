@@ -61,7 +61,14 @@ button {
   font-size: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+  width: 2.6rem; /* We need this in order for the svg icon to show without needing to add a text. */
 }
+/*
+.hidden-text {
+  color: transparent;
+
+} 
+*/
 
 button:hover {
   background-color: #0056b3;
