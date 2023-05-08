@@ -35,7 +35,7 @@ function TodoList({ checkedItems, inputs, checkHandler, handleDelete }) {
                               
                               } className={checkedItems[index] ? 'strike-tr' : ''}>
                                       <div className='chk-box-container'>
-                                          <input className='checkbox' type='checkbox' />
+                                          <input hidden className='checkbox' type='checkbox' />
                                           <span>{input}</span>
                                       </div>
                                           
