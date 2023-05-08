@@ -21,6 +21,17 @@ body {
   margin-bottom: 20px;
 }
 
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-top: 1rem;
+  /*color: blueviolet;*/
+  color: #FAD02C;
+}
+
+/* input */
 .todo-input {
   padding: 10px;
   border: 1px solid #ccc;
@@ -30,6 +41,7 @@ body {
   flex-grow: 1;
 }
 
+/* todo list */
 .todo-list-wrapper {
   display: flex;
   align-items: center;
@@ -41,17 +53,32 @@ body {
   margin: 0;
   padding: 0;
   flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .todo-list li {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  max-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-button {
+
+
+.todo-list li span {
+  height: 25px;
+  margin-left: 10px;
+}
+
+
+.add-btn {
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -63,6 +90,21 @@ button {
   transition: background-color 0.3s ease-in-out;
   width: 2.6rem; /* We need this in order for the svg icon to show without needing to add a text. */
 }
+
+.del-btn {
+  padding: none;
+  border: none;
+  border-radius: 5px;
+  /*background-color: #007bff;*/
+  background-color: #e01212;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 1.5rem;
+  
+  
+}
 /*
 .hidden-text {
   color: transparent;
@@ -70,29 +112,17 @@ button {
 } 
 */
 
-button:hover {
+.add-btn:hover {
   background-color: #0056b3;
+  transform: scale(1.1);
 }
 
-.todo-list {
-  display: flex;
-  flex-direction: column;
-}
 
 ul {
   list-style: none;
   padding-left: 0;
 }
 
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  text-align: center;
-  margin-top: 1rem;
-  /*color: blueviolet;*/
-  color: #FAD02C;
-}
 
 li:nth-child(even) {
   /*background-color: lightblue;*/
@@ -110,11 +140,13 @@ li:nth-child(odd) {
 li {
   color: #F9F9F9;
   min-width: 250px;
+  transition: all .2s ease-in-out; 
 }
 
 li:hover {
   background-color: #0056b3 !important;
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .strike-tr {
@@ -126,7 +158,6 @@ li:hover {
 
 .checkbox {
   opacity: 0;
-  
 }
 
 .greyed-out {
