@@ -9,13 +9,26 @@ function TodoList({ checkedItems, inputs, checkHandler }) {
         <ul>
                 {inputs.map((input, index) => {
 
-                    return ( <li key={index} onClick={e => checkHandler(index)} className={checkedItems[index] ? 'strike-tr greyed-out' : ''}>
+                    return ( <li key={index} onClick={e => {
+                          const div = e.currentTarget;
+                          const del = div.querySelector('.del-btn');
+                          if(del === e.target){
+                            console.log('here')
+                            return; 
+                          }else{
+                            
+                            return checkHandler(index);
+                          }
+                          
+                    }
+                                
+                                } className={checkedItems[index] ? 'strike-tr greyed-out' : ''}>
                                         <div className='chk-box-container'>
                                             <input className='checkbox' type='checkbox' />
                                             <span>{input}</span>
                                         </div>
                                             
-                                            <span className='svg-container'>  
+                                            <span className='svg-del-container'>  
                                                 <button className='del-btn'>X
                                                 </button>
                                             </span>
