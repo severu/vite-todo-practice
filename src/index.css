@@ -71,10 +71,11 @@ body {
 }
 
 
-
 .todo-list li span {
   height: 25px;
   margin-left: 10px;
+  
+  text-align: left;
 }
 
 
@@ -141,6 +142,7 @@ li {
   color: #F9F9F9;
   min-width: 250px;
   transition: all .2s ease-in-out; 
+  text-align: left;
 }
 
 li:hover {

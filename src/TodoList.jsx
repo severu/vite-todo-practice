@@ -10,7 +10,11 @@ function TodoList({ checkedItems, inputs, checkHandler }) {
                 {inputs.map((input, index) => {
 
                     return ( <li key={index} onClick={e => checkHandler(index)} className={checkedItems[index] ? 'strike-tr greyed-out' : ''}>
-                                            <input className='checkbox' type='checkbox' />{input}
+                                        <div className='chk-box-container'>
+                                            <input className='checkbox' type='checkbox' />
+                                            <span>{input}</span>
+                                        </div>
+                                            
                                             <span className='svg-container'>  
                                                 <button className='del-btn'>X
                                                 </button>
