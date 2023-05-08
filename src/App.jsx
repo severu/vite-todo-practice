@@ -35,6 +35,15 @@ function App() {
     console.log(checkedItems)
     //setIsChecked(!isChecked)
   }
+
+  const handleDelete = (index) => {
+    setInputs((prevInputs) =>
+    prevInputs.filter((_, i) => i !== index)
+  );
+  setCheckedItems((prevCheckedItems) =>
+    prevCheckedItems.filter((_, i) => i !== index)
+  );
+  };
   
   
   const clickHandler = (e) => {
@@ -50,6 +59,7 @@ function App() {
           // console.log('if empty', inputs)
         }else{
           setInputs([...inputs, currentInput])
+          console.log(inputs)
           // console.log('if not empty', inputs)
         }
       }
@@ -65,6 +75,7 @@ function App() {
         //console.log(currentInput)
   }
 
+  
   
 
 
@@ -90,7 +101,11 @@ function App() {
       <div className='todo-list-wrapper'>
           <div className='todo-list'>
               <label>{/*To-Do List:*/}</label>
-              <TodoList checkedItems={checkedItems} inputs={inputs} checkHandler={checkHandler}/>
+              <TodoList checkedItems={checkedItems} 
+                        inputs={inputs} 
+                        checkHandler={checkHandler} 
+                        handleDelete={handleDelete}
+              />
           </div>
       </div>
     </div>

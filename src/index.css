@@ -156,12 +156,15 @@ li:hover {
   text-decoration-color: black;
   text-decoration-thickness: 2px;
   font-size: 12px !important;
+  background-color: darkgray !important;
 }
 
 .checkbox {
-  opacity: 100;
+  opacity: 0;
+  
 }
-
+/*
 .greyed-out {
   background-color: darkgray !important;
 }
+*/
