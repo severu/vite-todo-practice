@@ -76,7 +76,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  min-width: 350px;
+  min-width: 260px;
 }
 
 
@@ -150,7 +150,7 @@ li:nth-child(odd) {
 li {
   color: #F9F9F9;
   min-width: 250px;
-  transition: all .2s ease-in-out; 
+  transition: all .5s ease-in-out;
   text-align: left;
 }
 
