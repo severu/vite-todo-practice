@@ -2,13 +2,15 @@ import { useState } from 'react'
 import './App.css'
 import TodoList from './TodoList'
 import { BeakerIcon, ArrowDownTrayIcon } from '@heroicons/react/24/solid'
-
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [inputs, setInputs] = useState([])
   const [currentInput, setCurrentInput] = useState('')
   //const [isChecked, setIsChecked] = useState(false)
   const [checkedItems, setCheckedItems] = useState([])
+  //const [reversedInput, setReversedInput] = useState([])
+  const id = crypto.randomUUID();
   
   
   const inputHandler = (e) => {
@@ -16,8 +18,10 @@ function App() {
     setCurrentInput(e.target.value)
   }
 
-  const checkHandler = (index) => {
-    
+  const checkHandler = (input) => {
+    console.log(input)
+    input.isChecked = !input.isChecked;
+    console.log(input.isChecked)
     //const checkStatus = e.target.checked
      /*
     setCheckedItems((prevCheckedItems) => {
@@ -25,54 +29,54 @@ function App() {
       const updatedCheckedItems = [...prevCheckedItems]      
       updatedCheckedItems[index] = !updatedCheckedItems[index]    
       return updatedCheckedItems
-      
-     
     }) 
+    setCheckedItems((inputs) => 
+            inputs.filter((item) => item.isChecked !== false));
     */
-    const newCheckedItems = [...checkedItems]
-    newCheckedItems[index] = !newCheckedItems[index]
-    setCheckedItems(newCheckedItems)
-    console.log(checkedItems)
+      setCheckedItems((prevCheckedItems) =>
+      prevCheckedItems.filter((items) => items.id !== input.id)
+      );
+    //const newCheckedItems = [...checkedItems]
+    //newCheckedItems.id = !newCheckedItems.id
+    //setCheckedItems(newCheckedItems)
+    //console.log('inside checkhandler', checkedItems)
     //setIsChecked(!isChecked)
   }
 
-  const handleDelete = (index) => {
+  const handleDelete = (id) => {
+    //const uuid = uuidv4;
+    console.log(id)
     setInputs((prevInputs) =>
-    prevInputs.filter((_, i) => i !== index)
+    prevInputs.filter((inputs) => inputs.id !== id)
   );
-  setCheckedItems((prevCheckedItems) =>
-    prevCheckedItems.filter((_, i) => i !== index)
-  );
+    //setInputs(reversedInput)
+    
+    setCheckedItems((prevCheckedItems) =>
+      prevCheckedItems.filter((inputs) => inputs.id !== id)
+    );
+    console.log("inside handleDelete",  inputs)
   };
   
-  
+
+  // event handler for input
   const clickHandler = (e) => {
         e.preventDefault()
-      
-        //const newInput = e.target.form[0].value
-        //setCurrentInput(e.target.form[0].value)
         
         //setInput([input, currentInput])
       if(currentInput !== ""){
         if(inputs.length === 0){
-          setInputs((prevInput) => [...prevInput, currentInput])
-          // console.log('if empty', inputs)
+          setInputs((prevInputs) => [...prevInputs, {id: id, todo: currentInput, isChecked: false}])
+          //setreversedInput(inputs.reverse())
+          console.log('if empty', inputs)
         }else{
-          setInputs([...inputs, currentInput])
-          console.log(inputs)
+          setInputs([...inputs, {id: id, todo: currentInput, isChecked: false}])
+          //setReversedInput(inputs.reverse())
+          console.log('not empty', inputs)
           // console.log('if not empty', inputs)
         }
-      }
-        
-        
-        
-        
+      }        
         setCurrentInput('')
-        // console.log(currentInput)
-        // console.log(inputs)
-        //setCount(count + 1)
-        //setCount(prevCount => prevCount + 1)
-        //console.log(currentInput)
+        
   }
 
   
@@ -102,7 +106,8 @@ function App() {
           <div className='todo-list'>
               <label>{/*To-Do List:*/}</label>
               <TodoList checkedItems={checkedItems} 
-                        inputs={inputs} 
+                        inputs={inputs}
+                        
                         checkHandler={checkHandler} 
                         handleDelete={handleDelete}
               />
