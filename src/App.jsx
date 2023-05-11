@@ -105,9 +105,8 @@ function App() {
       <div className='todo-list-wrapper'>
           <div className='todo-list'>
               <label>{/*To-Do List:*/}</label>
-              <TodoList checkedItems={checkedItems} 
+              <TodoList 
                         inputs={inputs}
-                        
                         checkHandler={checkHandler} 
                         handleDelete={handleDelete}
               />

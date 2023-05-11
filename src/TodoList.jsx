@@ -3,20 +3,17 @@ import './App.css'
 import './index.css'
 import { useState } from 'react'
 import { BeakerIcon, ArrowDownTrayIcon } from '@heroicons/react/24/solid'
-import { v4 as uuidv4 } from 'uuid'
 
 
-function TodoList({ checkedItems, inputs, checkHandler, handleDelete, id }) {
-  /*const [deletedItems, setDeletedItems] = useState([])
-  const handleDelete = (e, index) => {
-      e.preventDefault()
-      if(inputs[index].length !== 0){
-        delete inputs[index]
-        setDeletedItems((prevInputs) => [...prevInputs, inputs[index]])
-      }
-      
-      
-  }*/
+
+
+function TodoList({ inputs, checkHandler, handleDelete, id }) {
+  const [isEditable, setIsEditable] = useState(false)
+  const handleEdit = (e) => {
+        setIsEditable(false)
+        console.log("edit")
+  }
+  
   return (
     <>
         <ul>
@@ -24,8 +21,9 @@ function TodoList({ checkedItems, inputs, checkHandler, handleDelete, id }) {
                       //console.log('uuid', id)
                       return ( <li key={input.id} onClick={e => {
                         const div = e.currentTarget;
-                        const del = div.querySelector('.del-btn');
-                        if(del === e.target){
+                        const edit = div.querySelector('.edt-btn');
+                        
+                        if(edit === e.target){
                           
                           return; 
                         }else{
@@ -38,12 +36,17 @@ function TodoList({ checkedItems, inputs, checkHandler, handleDelete, id }) {
                               } className={input.isChecked ? 'strike-tr' : ''}>
                                       <div className='chk-box-container'>
                                           <input hidden className='checkbox' type='checkbox' />
-                                          <span>{input.todo}</span>
+                                          <span contentEditable={isEditable}>{input.todo}</span>
                                       </div>
                                           
+                                          
                                           <span className='svg-del-container'>  
-                                              <button className='del-btn' onClick={()=> {handleDelete(input.id)}}>X
-                                              </button>
+                                              <button className='edt-btn' 
+                                                      onClick={() => {setIsEditable(true)}}>EDIT
+                                              </button>   
+                                              <button className='del-btn' 
+                                                      onClick={() => {handleDelete(input.id)}}>X
+                                              </button>   
                                           </span>
                           
                           </li>)
