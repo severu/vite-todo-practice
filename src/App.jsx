@@ -38,6 +38,8 @@ function App() {
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      width: "25em",
+      position: "top",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -53,7 +55,13 @@ function App() {
           prevCheckedItems.filter((inputs) => inputs.id !== id)
         );
         console.log("inside handleDelete", inputs);
-        Swal.fire("Deleted!", "The item has been deleted.", "success");
+        MySwal.fire({
+          title: "Deleted!",
+          text: "The item has been deleted.",
+          icon: "success",
+          position: "top",
+          width: "25em",
+        });
       }
     });
   };
