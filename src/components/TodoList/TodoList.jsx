@@ -7,7 +7,7 @@ function TodoList({ todos, handleCheck, handleDelete }) {
       <ul className="todo__list">
         {todos.map((todo) => (
           <li key={todo.id} className="todo__list__item">
-            <label>
+            <label className={todo.isDone ? "todo__list__item__done" : ""}>
               <input
                 type="checkbox"
                 checked={todo.isDone}

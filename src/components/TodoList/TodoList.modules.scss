@@ -23,6 +23,11 @@
       align-items: center;
       justify-content: space-between;
 
+      &__done{
+        text-decoration: line-through;
+        
+      }
+
       &:hover {
         background-color: var(--color-two) !important;
         cursor: pointer;
@@ -30,7 +35,7 @@
       }
 
       &:nth-child(even) {
-        background-color: var(--color-four);;
+        background-color: var(--color-four);
       }
 
       &:nth-child(odd) {
