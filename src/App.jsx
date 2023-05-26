@@ -3,6 +3,10 @@ import TodoList from "./components/TodoList/TodoList";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { todos } from "./data/todos";
 import "./App.modules.scss";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 function App() {
   const [tasks, setTasks] = useState(todos);
@@ -23,8 +27,27 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      position: "top",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedTasks = tasks.filter((task) => task.id !== id);
+        setTasks(updatedTasks);
+        MySwal.fire({
+          title: "Deleted!",
+          text: "The task has been deleted.",
+          icon: "success",
+          position: "top",
+        });
+      }
+    });
   };
 
   return (
