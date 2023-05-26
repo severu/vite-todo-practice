@@ -1,137 +1,56 @@
 import { useState } from "react";
-import "./App.css";
-import TodoList from "./TodoList";
-import { BeakerIcon, ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-
-const MySwal = withReactContent(Swal);
+import TodoList from "./components/TodoList/TodoList";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
+import { todos } from "./data/todos";
+import "./App.modules.scss";
 
 function App() {
-  const [inputs, setInputs] = useState([]);
+  const [tasks, setTasks] = useState(todos);
   const [currentInput, setCurrentInput] = useState("");
-  //const [isChecked, setIsChecked] = useState(false)
-  const [checkedItems, setCheckedItems] = useState([]);
 
-  const id = crypto.randomUUID();
-
-  const inputHandler = (e) => {
-    //e.preventDefault()
-    setCurrentInput(e.target.value);
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const task = { id: tasks.length + 1, task: currentInput, isDone: false };
+    setTasks((prev) => [task, ...prev]);
+    setCurrentInput("");
   };
 
-  const checkHandler = (input) => {
-    console.log(input);
-    input.isChecked = !input.isChecked;
-    console.log(input.isChecked);
-
-    setCheckedItems((prevCheckedItems) =>
-      prevCheckedItems.filter((items) => items.id !== input.id)
+  const handleCheck = (id) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, isDone: !task.isDone } : task
     );
+    setTasks(updatedTasks);
   };
 
   const handleDelete = (id) => {
-    //const uuid = uuidv4;
-    //console.log(id)
-    //triggers sweetalert before the delete
-    MySwal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      width: "25em",
-      position: "top",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      //if user clicks the confirm button, proceed to delete item/list
-      if (result.isConfirmed) {
-        setInputs((prevInputs) =>
-          prevInputs.filter((inputs) => inputs.id !== id)
-        );
-
-        setCheckedItems((prevCheckedItems) =>
-          prevCheckedItems.filter((inputs) => inputs.id !== id)
-        );
-        console.log("inside handleDelete", inputs);
-        MySwal.fire({
-          title: "Deleted!",
-          text: "The item has been deleted.",
-          icon: "success",
-          position: "top",
-          width: "25em",
-        });
-      }
-    });
-  };
-
-  // event handler for input
-  const addClickHandler = (e) => {
-    e.preventDefault();
-
-    //setInput([input, currentInput])
-
-    if (currentInput !== "") {
-      if (inputs.length === 0) {
-        setInputs((prevInputs) => [
-          ...prevInputs,
-          { id: id, todo: currentInput, isChecked: false },
-        ]);
-
-        console.log("if empty", inputs);
-      } else {
-        setInputs([
-          ...inputs,
-          { id: id, todo: currentInput, isChecked: false },
-        ]);
-
-        console.log("not empty", inputs);
-      }
-    }
-
-    setCurrentInput("");
-    console.log(id);
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
   };
 
   return (
-    <div className="container">
-      <h1 className="title">TODO LIST</h1>
-      <div className="form-wrapper">
-        <form id="form-input">
+    <div className="app">
+      <h1 className="app__title">TODO LIST</h1>
+      <div className="app__form">
+        <form id="form-input" onSubmit={handleAdd}>
           <label htmlFor="input">
             <input
               required
-              className="todo-input"
+              className="app__form__input"
               value={currentInput}
               id="input"
-              onChange={inputHandler}
+              onChange={(e) => setCurrentInput(e.target.value)}
             />
           </label>
         </form>
-        <button
-          className="add-btn"
-          type="submit"
-          form="form-input"
-          onClick={addClickHandler}
-        >
-          {/*<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>*/}
-
+        <button className="app__form__add-btn" type="submit" form="form-input">
           <ArrowDownTrayIcon className="h-6 w-6 text-blue-500" />
         </button>
       </div>
-      <div className="todo-list-wrapper">
-        <div className="todo-list">
-          <label>{/*To-Do List:*/}</label>
-          <TodoList
-            inputs={inputs}
-            checkHandler={checkHandler}
-            handleDelete={handleDelete}
-          />
-        </div>
-      </div>
+      <TodoList
+        todos={tasks}
+        handleCheck={handleCheck}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }

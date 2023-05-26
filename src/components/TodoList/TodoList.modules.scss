@@ -1,0 +1,55 @@
+.todo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+
+    &__item {
+      color: #F9F9F9;
+      min-width: 250px;
+      transition: all .5s ease-in-out;
+      text-align: left;
+      margin-bottom: 5px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &:hover {
+        background-color: var(--color-two) !important;
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+      &:nth-child(even) {
+        background-color: var(--color-four);;
+      }
+
+      &:nth-child(odd) {
+        background-color: var(--color-three);
+      }
+
+      &__del-btn {
+        padding: none;
+        border: none;
+        border-radius: 5px;
+        background-color: #e01212;
+        color: #fff;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}
+
