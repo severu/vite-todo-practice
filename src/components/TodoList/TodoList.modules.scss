@@ -23,13 +23,13 @@
       align-items: center;
       justify-content: space-between;
 
-      &__done{
+      &.done{
         text-decoration: line-through;
-        
+        background-color: grey !important;
       }
 
       &:hover {
-        background-color: var(--color-two) !important;
+        background-color: var(--color-two);
         cursor: pointer;
         transform: scale(1.1);
       }
