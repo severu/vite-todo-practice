@@ -1,13 +1,17 @@
 import React from "react";
 import "./TodoList.modules.scss";
+import classNames from "classnames";
 
 function TodoList({ todos, handleCheck, handleDelete }) {
   return (
     <div className="todo">
       <ul className="todo__list">
         {todos.map((todo) => (
-          <li key={todo.id} className="todo__list__item" style={todo.isDone ? {backgroundColor: "grey"} : {}}>
-            <label className={todo.isDone ? "todo__list__item__done" : ""}>
+          <li
+            key={todo.id}
+            className={classNames("todo__list__item", { done: todo.isDone })}
+          >
+            <label>
               <input
                 type="checkbox"
                 checked={todo.isDone}
