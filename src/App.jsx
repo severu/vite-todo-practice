@@ -11,12 +11,34 @@ const MySwal = withReactContent(Swal);
 function App() {
   const [tasks, setTasks] = useState(todos);
   const [currentInput, setCurrentInput] = useState("");
+  const [editID, setEditID] = useState(0); //this is important to control the flow of the handleAdd function
 
   const handleAdd = (e) => {
     e.preventDefault();
-    const task = { id: tasks.length + 1, task: currentInput, isDone: false };
-    setTasks((prev) => [task, ...prev]);
-    setCurrentInput("");
+    if (currentInput !== "") {
+      const task = { id: tasks.length + 1, task: currentInput, isDone: false };
+      setTasks((prev) => [task, ...prev]);
+      setCurrentInput("");
+    }
+    //temporary solution... I prefer the pop-up one.
+    if (editID) {
+      //store the object with the same id as the one being edited
+      const editTask = tasks.find((t) => t.id === editID);
+      //store the new task list to a variable
+      const updatedTask = tasks.map((t) =>
+        //if the id of the object is the same as the id of the item being edited...
+        //set the specific object's task item's value to the one inside currentInput
+        t.id === editTask.id
+          ? { id: t.id, task: currentInput, isDone: t.isDone }
+          : { id: t.id, task: t.task, isDone: t.isDone }
+      );
+      //update the Tasks object with the new one
+      setTasks(updatedTask);
+      //setting editID to 0 everytime you enter the 2nd if block is important...
+      //because you don't want to get inside the second if block if you are...
+      //just trying to add another todo item right after editing an item.
+      setEditID(0);
+    }
   };
 
   const handleCheck = (id) => {
@@ -50,6 +72,11 @@ function App() {
     });
   };
 
+  const handleEdit = (todo) => {
+    setCurrentInput(todo.task);
+    setEditID(todo.id);
+  };
+
   return (
     <div className="app">
       <h1 className="app__title">TODO LIST</h1>
@@ -73,6 +100,7 @@ function App() {
         todos={tasks}
         handleCheck={handleCheck}
         handleDelete={handleDelete}
+        handleEdit={handleEdit}
       />
     </div>
   );

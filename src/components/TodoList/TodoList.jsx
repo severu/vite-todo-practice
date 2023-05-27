@@ -2,7 +2,7 @@ import React from "react";
 import "./TodoList.modules.scss";
 import classNames from "classnames";
 
-function TodoList({ todos, handleCheck, handleDelete }) {
+function TodoList({ todos, handleCheck, handleDelete, handleEdit }) {
   return (
     <div className="todo">
       <ul className="todo__list">
@@ -19,6 +19,9 @@ function TodoList({ todos, handleCheck, handleDelete }) {
               />
               {todo.task}
             </label>
+            <button onClick={() => handleEdit(todo)}>
+              Edit
+            </button>
             <button
               className="todo__list__item__del-btn"
               onClick={() => handleDelete(todo.id)}
