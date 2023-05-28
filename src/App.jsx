@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TodoList from "./components/TodoList/TodoList";
+import ListStats from "./components/ListStats/ListStats";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { todos } from "./data/todos";
 import "./App.modules.scss";
@@ -53,7 +54,10 @@ function App() {
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      iconColor: "#e77575",
       position: "top",
+      width: "20em",
+      background: "#F9F8F8",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -66,6 +70,8 @@ function App() {
           title: "Deleted!",
           text: "The task has been deleted.",
           icon: "success",
+          iconColor: "#7ff5a6",
+          width: "20em",
           position: "top",
         });
       }
@@ -102,6 +108,7 @@ function App() {
         handleDelete={handleDelete}
         handleEdit={handleEdit}
       />
+      <ListStats />
     </div>
   );
 }
