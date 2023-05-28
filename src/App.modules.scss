@@ -9,11 +9,13 @@
 
 .app {
   max-width: 400px;
+  min-height: 40rem;
   margin: 0 auto;
   padding: 20px;
-  border: 2px solid #333652;
+  /* border: 2px solid #333652; */
   border-radius: 10px;
-  background-color: var(--color-five);
+  background-color: #F9F8F8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   @media (max-width: 550px) {
     max-width: 90%;
@@ -25,7 +27,7 @@
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-top: 1rem;
-    color: var(--color-six);
+    color: #4D413A;
   }
 
   &__form {
@@ -47,12 +49,16 @@
       padding: 10px;
       border: none;
       border-radius: 5px;
-      background-color: var(--color-six);
+      background-color: #C87D87;
       color: #fff;
       font-size: 12px;
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
       width: 2.6rem; /* We need this in order for the svg icon to show without needing to add a text. */
+    }
+    &__add-btn:hover{
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   }
 }
