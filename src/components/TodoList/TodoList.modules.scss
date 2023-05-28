@@ -22,7 +22,7 @@
 
     &__item {
       color: #F9F8F8;
-      min-width: 250px;
+      min-width: 18rem;
       transition: all .5s ease-in-out;
       text-align: left;
       margin-bottom: 5px;
@@ -32,6 +32,7 @@
       justify-content: space-between;
       border-radius: 5px;
       font-size: 22px;
+      max-width: 20rem;
 
 
       /* for custom checkbox */
@@ -103,6 +104,7 @@
         background-color: grey !important;
         font-size: smaller !important;
         font-weight: lighter;
+        color: #f9f8f89e;
       }
 
       &:hover {

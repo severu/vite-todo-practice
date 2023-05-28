@@ -46,6 +46,7 @@
       margin-right: 10px;
       font-size: 16px;
       flex-grow: 1;
+      min-width: 14rem;
     }
 
     &__add-btn {
@@ -58,6 +59,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
       width: 2.6rem; /* We need this in order for the svg icon to show without needing to add a text. */
+      height: 2.6rem;
     }
     &__add-btn:hover{
       transform: scale(1.1);

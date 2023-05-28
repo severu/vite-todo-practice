@@ -70,6 +70,7 @@ function App() {
         MySwal.fire({
           title: "Deleted!",
           text: "The task has been deleted.",
+          background: "#F9F8F8",
           icon: "success",
           iconColor: "#7ff5a6",
           width: "20em",
