@@ -66,6 +66,7 @@ function App() {
       if (result.isConfirmed) {
         const updatedTasks = tasks.filter((task) => task.id !== id);
         setTasks(updatedTasks);
+        setEditID(0);
         MySwal.fire({
           title: "Deleted!",
           text: "The task has been deleted.",
