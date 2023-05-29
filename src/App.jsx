@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, createContext, useEffect } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import ListStats from "./components/ListStats/ListStats";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
@@ -9,10 +9,30 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
+export const ThemeContext = createContext(null);
+
 function App() {
+  const [theme, setTheme] = useState("light");
   const [tasks, setTasks] = useState(todos);
   const [currentInput, setCurrentInput] = useState("");
   const [editID, setEditID] = useState(0); //this is important to control the flow of the handleAdd function
+  const [remaining, setRemaining] = useState(0);
+  const [doneTasks, setdoneTasks] = useState(0);
+  const [totalTasks, setTotalTasks] = useState(0);
+
+  useEffect(() => {
+    const total = tasks.length;
+    setTotalTasks(total);
+    const done = tasks.filter((task) => task.isDone === true)
+    const sum_done = done.length
+    setdoneTasks(sum_done)
+    const remain = total - sum_done
+    setRemaining(remain)
+  }, [tasks]);
+
+  const toggleTheme = () => {
+    setTheme(!theme);
+  };
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -86,32 +106,43 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1 className="app__title">TO-DO LIST</h1>
-      <div className="app__form">
-        <form id="form-input" onSubmit={handleAdd}>
-          <label htmlFor="input">
-            <input
-              required
-              className="app__form__input"
-              value={currentInput}
-              id="input"
-              onChange={(e) => setCurrentInput(e.target.value)}
-            />
-          </label>
-        </form>
-        <button className="app__form__add-btn" type="submit" form="form-input">
-          <ArrowDownTrayIcon className="h-6 w-6 text-blue-500" />
-        </button>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className="app" id={theme}>
+        <div className="app__toggler"></div>
+        <h1 className="app__title">TO-DO LIST</h1>
+        <div className="app__form">
+          <form id="form-input" onSubmit={handleAdd}>
+            <label htmlFor="input">
+              <input
+                required
+                className="app__form__input"
+                value={currentInput}
+                id="input"
+                onChange={(e) => setCurrentInput(e.target.value)}
+              />
+            </label>
+          </form>
+          <button
+            className="app__form__add-btn"
+            type="submit"
+            form="form-input"
+          >
+            <ArrowDownTrayIcon className="h-6 w-6 text-blue-500" />
+          </button>
+        </div>
+        <TodoList
+          todos={tasks}
+          handleCheck={handleCheck}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
+        <ListStats
+          remaining={remaining}
+          doneTasks={doneTasks}
+          totalTasks={totalTasks}
+        />
       </div>
-      <TodoList
-        todos={tasks}
-        handleCheck={handleCheck}
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-      />
-      <ListStats />
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

@@ -1,0 +1,26 @@
+.list-container {
+    background-color: rgb(77 65 58 / 32%);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 3.5rem;
+    color: #F9F8F8;
+
+    &__stats {
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__number {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        &__text {
+            font-size: 0.6rem;
+        }
+    }
+}
