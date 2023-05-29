@@ -1,7 +1,7 @@
 import { useState, createContext, useEffect } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import ListStats from "./components/ListStats/ListStats";
-import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon, PlusCircleIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { todos } from "./data/todos";
 import "./App.modules.scss";
 import Swal from "sweetalert2";
@@ -127,7 +127,7 @@ function App() {
             type="submit"
             form="form-input"
           >
-            <ArrowDownTrayIcon className="h-6 w-6 text-blue-500" />
+            <PlusIcon className="h-6 w-6 text-blue-500" />
           </button>
         </div>
         <TodoList

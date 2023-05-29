@@ -1,5 +1,6 @@
 .list-container {
-    background-color: rgb(77 65 58 / 32%);
+    /*background-color: rgb(77 65 58 / 32%);*/
+    background-color: #c87d87f2;
     border-radius: 10px;
     width: 100%;
     display: flex;
@@ -17,7 +18,6 @@
 
         &__number {
             font-size: 1.5rem;
-            font-weight: 300;
         }
 
         &__text {
