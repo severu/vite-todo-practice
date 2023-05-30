@@ -1,9 +1,15 @@
 import { useState, createContext, useEffect } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import ListStats from "./components/ListStats/ListStats";
-import { ArrowDownTrayIcon, PlusCircleIcon, PlusIcon } from "@heroicons/react/24/solid";
+import ButtonToggler from "./components/ButtonToggler/ButtonToggler";
+import {
+  ArrowDownTrayIcon,
+  PlusCircleIcon,
+  PlusIcon,
+} from "@heroicons/react/24/solid";
 import { todos } from "./data/todos";
 import "./App.modules.scss";
+import "./themes.scss"
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -13,6 +19,7 @@ export const ThemeContext = createContext(null);
 
 function App() {
   const [theme, setTheme] = useState("light");
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [tasks, setTasks] = useState(todos);
   const [currentInput, setCurrentInput] = useState("");
   const [editID, setEditID] = useState(0); //this is important to control the flow of the handleAdd function
@@ -23,15 +30,23 @@ function App() {
   useEffect(() => {
     const total = tasks.length;
     setTotalTasks(total);
-    const done = tasks.filter((task) => task.isDone === true)
-    const sum_done = done.length
-    setdoneTasks(sum_done)
-    const remain = total - sum_done
-    setRemaining(remain)
+    const done = tasks.filter((task) => task.isDone === true);
+    const sum_done = done.length;
+    setdoneTasks(sum_done);
+    const remain = total - sum_done;
+    setRemaining(remain);
   }, [tasks]);
 
   const toggleTheme = () => {
-    setTheme(!theme);
+    const element = document.getElementById("html-id");
+    if (isDarkMode) {
+      element.setAttribute("data-theme", "dark");
+      setIsDarkMode(!isDarkMode);
+    } else {
+      element.setAttribute("data-theme", "light");
+      setIsDarkMode(!isDarkMode);
+    }
+    console.log(isDarkMode)
   };
 
   const handleAdd = (e) => {
@@ -108,7 +123,9 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="app" id={theme}>
-        <div className="app__toggler"></div>
+        <div className="app__toggler">
+          <ButtonToggler isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+        </div>
         <h1 className="app__title">TO-DO LIST</h1>
         <div className="app__form">
           <form id="form-input" onSubmit={handleAdd}>

@@ -17,8 +17,19 @@
   padding: 20px;
   /* border: 2px solid #333652; */
   border-radius: 10px;
-  background-color: #F9F8F8;
+  /*background-color: #F9F8F8;*/
+  background-color: var(--defaultBg);
+  
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  &__toggler {
+    display: flex;
+    width: 100%;
+    background-color: var(--defaultBg);
+    margin: -15px;
+    justify-content: flex-end;
+    color: var(--textColor);
+  }
 
   @media (max-width: 550px) {
     max-width: 90%;
@@ -30,7 +41,8 @@
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-top: 1rem;
-    color: #4D413A;
+    /*color: #4D413A;*/
+    color: var(--textColor);
   }
 
   &__form {

@@ -1,0 +1,10 @@
+html[data-theme="light"] {
+    --defaultBg: #F9F8F8;
+    --textColor: #24285e;
+  }
+  
+html[data-theme="dark"] {
+    /*--defaultBg: #24285e;*/
+    --defaultBg: #2c2e44;
+    --textColor: #F9F8F8;
+  }
