@@ -6,12 +6,12 @@ function Weather() {
   const [location, setLocation] = useState();
   const [wdata, setWdata] = useState([]);
   const [celcius, setCelcius] = useState();
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=12831ccec9eac45eba1cb276606889d8`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=f265ed7c7acbde47154b1aea003bc802`;
 
   useEffect(() => {
     getLocation();
     getWeather();
-  }, []);
+  }, [location]);
 
   const getLocation = async () => {
     const city = await axios.get("https://ipapi.co/json/");
@@ -24,7 +24,7 @@ function Weather() {
       setWdata(response.data);
       const celc = wdata.main.temp - 273.15;
       setCelcius(Math.round(celc));
-      //console.log(response.data);
+      console.log(response.data);
     });
   };
 
