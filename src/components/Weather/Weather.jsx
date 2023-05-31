@@ -11,7 +11,7 @@ function Weather() {
   useEffect(() => {
     getLocation();
     getWeather();
-  }, [celcius]);
+  }, [location, celcius]);
 
   const getLocation = async () => {
     const city = await axios.get("https://ipapi.co/json/");
@@ -22,7 +22,8 @@ function Weather() {
   const getWeather = () => {
     axios.get(url).then((response) => {
       setWdata(response.data);
-      const celc = wdata.main.temp - 273.15;
+      const kelvin = response.data.main.temp;
+      const celc = kelvin - 273.15;
       setCelcius(Math.round(celc));
       console.log(response.data);
     });
