@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import ListStats from "./components/ListStats/ListStats";
 import ButtonToggler from "./components/ButtonToggler/ButtonToggler";
+import Weather from "./components/Weather/Weather";
 import {
   ArrowDownTrayIcon,
   PlusCircleIcon,
@@ -9,7 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { todos } from "./data/todos";
 import "./App.modules.scss";
-import "./themes.scss"
+import "./themes.scss";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -46,7 +47,7 @@ function App() {
       element.setAttribute("data-theme", "light");
       setIsDarkMode(!isDarkMode);
     }
-    console.log(isDarkMode)
+    console.log(isDarkMode);
   };
 
   const handleAdd = (e) => {
@@ -121,45 +122,42 @@ function App() {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="app" id={theme}>
-        <div className="app__toggler">
-          <ButtonToggler isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        </div>
-        <h1 className="app__title">TO-DO LIST</h1>
-        <div className="app__form">
-          <form id="form-input" onSubmit={handleAdd}>
-            <label htmlFor="input">
-              <input
-                required
-                className="app__form__input"
-                value={currentInput}
-                id="input"
-                onChange={(e) => setCurrentInput(e.target.value)}
-              />
-            </label>
-          </form>
-          <button
-            className="app__form__add-btn"
-            type="submit"
-            form="form-input"
-          >
-            <PlusIcon className="h-6 w-6 text-blue-500" />
-          </button>
-        </div>
-        <TodoList
-          todos={tasks}
-          handleCheck={handleCheck}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
-        />
-        <ListStats
-          remaining={remaining}
-          doneTasks={doneTasks}
-          totalTasks={totalTasks}
-        />
+    <div className="app">
+      <div className="app__toggler">
+        <ButtonToggler isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       </div>
-    </ThemeContext.Provider>
+      <div className="app__header">
+        <Weather />
+      </div>
+      <h1 className="app__title">TO-DO LIST</h1>
+      <div className="app__form">
+        <form id="form-input" onSubmit={handleAdd}>
+          <label htmlFor="input">
+            <input
+              required
+              className="app__form__input"
+              value={currentInput}
+              id="input"
+              onChange={(e) => setCurrentInput(e.target.value)}
+            />
+          </label>
+        </form>
+        <button className="app__form__add-btn" type="submit" form="form-input">
+          <PlusIcon className="h-6 w-6 text-blue-500" />
+        </button>
+      </div>
+      <TodoList
+        todos={tasks}
+        handleCheck={handleCheck}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
+      <ListStats
+        remaining={remaining}
+        doneTasks={doneTasks}
+        totalTasks={totalTasks}
+      />
+    </div>
   );
 }
 
