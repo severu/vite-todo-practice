@@ -126,9 +126,10 @@ function App() {
       <div className="app__toggler">
         <ButtonToggler isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       </div>
-      <div className="app__header">
+      <>
         <Weather />
-      </div>
+      </>
+
       <h1 className="app__title">TO-DO LIST</h1>
       <div className="app__form">
         <form id="form-input" onSubmit={handleAdd}>
