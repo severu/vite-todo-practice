@@ -9,14 +9,19 @@ function Weather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=f265ed7c7acbde47154b1aea003bc802`;
 
   useEffect(() => {
-    getLocation();
-    getWeather();
+    
+        getLocation();
+        getWeather();
+        console.log("time");
+      
+
+    //return () => clearInterval(interval);
   }, [location, celcius]);
 
   const getLocation = async () => {
-    const city = await axios.get("https://ipapi.co/json/");
-    setLocation(city.data.city);
-    console.log(location);
+    const city = await axios.get("https://ipapi.co/city/");
+    setLocation(city.data);
+    console.log(city);
   };
 
   const getWeather = () => {
