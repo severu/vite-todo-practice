@@ -11,9 +11,8 @@ function Weather() {
   useEffect(() => {
     getLocation();
     getWeather();
-    console.log("time");
 
-    //return () => clearInterval(interval);
+    //return () => clearInterval(interval)
   }, [location, celcius]);
 
   const getLocation = async () => {
@@ -29,6 +28,7 @@ function Weather() {
       const celc = kelvin - 273.15;
       setCelcius(Math.round(celc));
       console.log(response.data);
+      console.log("time");
     });
   };
 

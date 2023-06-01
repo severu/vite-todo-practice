@@ -34,6 +34,16 @@
       font-size: 20px;
       max-width: 20rem;
 
+      @media (max-width: 410px) {
+        min-width: 90%;
+        
+      }
+
+      @media (max-width: 300px) {
+        width: 90%;
+        
+      }
+
 
       /* for custom checkbox */
       

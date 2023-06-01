@@ -40,9 +40,7 @@
     color: var(--textColor);
   }
   
-  @media (max-width: 400px) {
-    max-width: 90%;
-  }
+  
   
 
   &__title {
@@ -61,6 +59,12 @@
     justify-content: center;
     margin-bottom: 20px;
 
+    @media (max-width: 400px) {
+      max-width: 90%;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
     &__input {
       padding: 10px;
       border: 1px solid #ccc;
@@ -69,6 +73,18 @@
       font-size: 16px;
       flex-grow: 1;
       min-width: 14rem;
+
+      @media (max-width: 400px) {
+        min-width: 90%;
+        
+      }
+
+      @media (max-width: 300px) {
+        width: 90%;
+        
+      }
+
+
     }
 
     &__add-btn {
