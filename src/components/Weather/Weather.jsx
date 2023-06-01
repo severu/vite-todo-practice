@@ -9,11 +9,9 @@ function Weather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=f265ed7c7acbde47154b1aea003bc802`;
 
   useEffect(() => {
-    
-        getLocation();
-        getWeather();
-        console.log("time");
-      
+    getLocation();
+    getWeather();
+    console.log("time");
 
     //return () => clearInterval(interval);
   }, [location, celcius]);
@@ -39,7 +37,8 @@ function Weather() {
       <div className="container__city">{location}</div>
       {wdata.main ? (
         <div className="container__temp">
-          {celcius}&deg;<span>C</span>
+          <span className="container__temp__celcius">{celcius}</span>&deg;
+          <span className="container__temp__sign">C</span>
         </div>
       ) : null}
       {wdata.weather ? (
