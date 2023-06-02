@@ -93,6 +93,7 @@
     &__add-btn {
       padding: 10px;
       border: none;
+      margin: 0;
       border-radius: 5px;
       background-color: #C87D87;
       color: #fff;
@@ -107,6 +108,7 @@
 
         svg {
           height: -webkit-fill-available;
+          height: 1.5rem;
         }
         
         
