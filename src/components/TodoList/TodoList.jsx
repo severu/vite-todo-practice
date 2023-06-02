@@ -12,7 +12,7 @@ function TodoList({ todos, handleCheck, handleDelete, handleEdit }) {
             key={todo.id}
             className={classNames("todo__list__item", { done: todo.isDone })}
           >
-            <label className="todo__list__item__input-container" >
+            <label className="todo__list__item__input-container">
               <input
                 className="todo__list__item__input-container__checkbox"
                 type="checkbox"
@@ -28,12 +28,14 @@ function TodoList({ todos, handleCheck, handleDelete, handleEdit }) {
                 onClick={() => handleEdit(todo)}
               >
                 <PencilSquareIcon />
+                <span className="todo__list__item__edit-btn__tooltip">Edit Task</span>
               </button>
               <button
                 className="todo__list__item__del-btn"
                 onClick={() => handleDelete(todo.id)}
               >
                 <TrashIcon />
+                <span className="todo__list__item__del-btn__tooltip">Delete</span>
               </button>
             </div>
           </li>
