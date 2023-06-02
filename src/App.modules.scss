@@ -60,13 +60,14 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-
+    flex-wrap: wrap;
+    
     @media (max-width: 400px) {
       max-width: 90%;
-      flex-wrap: wrap;
+      
       gap: 1rem;
     }
-
+    
     &__input {
       padding: 10px;
       border: 1px solid #ccc;
@@ -100,6 +101,19 @@
       transition: background-color 0.3s ease-in-out;
       width: 2.6rem; /* We need this in order for the svg icon to show without needing to add a text. */
       height: 2.6rem;
+
+      @media (max-width: 400px) {
+        width: 14rem;
+
+        svg {
+          height: -webkit-fill-available;
+        }
+        
+        
+      }
+
+      
+      
     }
     &__add-btn:hover{
       transform: scale(1.1);
